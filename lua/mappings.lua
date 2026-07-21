@@ -4,7 +4,7 @@ local harpoon = require("harpoon")
 local map = vim.keymap.set
 
 map("n", ";", ":",        { desc = "CMD enter command mode" })
-map("n", "-", ":Oil<CR>", { desc = "Open parent directory"})
+map("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory"})
 
 map("n", "C-h", ":TmuxNavigateLeft<CR>"  )
 map("n", "C-j", ":TmuxNavigateDown<CR>"  )
@@ -22,4 +22,20 @@ map("n", "<C-e>"    , function()
     title = " Harpoon ",
     ui_width_ratio = 0.4
   })
+end)
+
+vim.keymap.set("n", "<leader>cd", function()
+  local current_dir = vim.fn.expand("%:p:h")
+  local cmd = "git -C " .. vim.fn.escape(current_dir, " ") .. " rev-parse --show-toplevel"
+  local root = vim.fn.systemlist(cmd)[1]
+
+  -- if no git repository directory could be found
+  if not (vim.v.shell_error == 0 and root and root ~= "") then
+    root = current_dir
+  end
+
+  root = string.gsub(root, "^oil://", "")
+
+  vim.fn.chdir(root)
+  vim.notify("Changed directory to: " .. root, vim.log.levels.INFO)
 end)

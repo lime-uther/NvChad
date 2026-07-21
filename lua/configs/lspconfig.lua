@@ -11,5 +11,4 @@ local servers = {
   "nil_ls",
 }
 
-vim.lsp.config("*")
 vim.lsp.enable(servers)
