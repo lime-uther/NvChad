@@ -1,11 +1,12 @@
 return {
+
+  { "christoomey/vim-tmux-navigator", },
+
   {
     "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
     opts = require "configs.conform",
   },
 
-  -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -13,16 +14,36 @@ return {
     end,
   },
 
-  -- test new blink
-  -- { import = "nvchad.blink.lazyspec" },
+  {
+    "stevearc/oil.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function ()
+      require("oil").setup {
+        columns = { "icon" },
+        keymaps = {
+          ["<C-h>"] = false,
+          ["<C-l>"] = false,
 
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+          ["<M-h>"] = "actions.select_split",
+
+          ["."]     = "actions.toggle_hidden",
+        },
+
+        view_options = {
+          show_hidden = false,
+        }
+      }
+    end
+  },
+
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function ()
+      local harpoon = require("harpoon")
+      harpoon:setup()
+    end
+  },
+
 }
