@@ -3,6 +3,11 @@ return {
   { "christoomey/vim-tmux-navigator", },
 
   {
+    "folke/which-key.nvim",
+    enabled = false,
+  },
+
+  {
     "stevearc/conform.nvim",
     opts = require "configs.conform",
   },
