@@ -21,7 +21,7 @@ return {
 
   {
     "stevearc/oil.nvim",
-    lazy = false;
+    lazy = false,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function ()
       require("oil").setup {
@@ -75,5 +75,17 @@ return {
       harpoon:setup()
     end
   },
+
+  {
+    "vyfor/cord.nvim",
+    lazy = false,
+    config = function ()
+      require("cord").setup {
+        buttons = {
+          { label = "View Repository", url = function(opts) return opts.repo_url end },
+        },
+      }
+    end
+  }
 
 }
