@@ -9,6 +9,7 @@ local servers = {
   "ts_ls",
   "qmlls",
   "nil_ls",
+  "arduino_language_server"
 }
 
 vim.lsp.enable(servers)
