@@ -9,7 +9,9 @@ local servers = {
   "ts_ls",
   "qmlls",
   "nil_ls",
-  "arduino_language_server"
+  "arduino_language_server",
+  "clangd",
+  "basedpyright"
 }
 
 vim.lsp.enable(servers)
